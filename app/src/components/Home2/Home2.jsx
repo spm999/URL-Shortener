@@ -75,8 +75,8 @@ const Home2 = () => {
       <nav>
         <ul>
           <li><Link to={`/${userId}`}>Home</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/aboutus">About Us</Link></li>
+          <li><Link to={`/${userId}/contact`}>Contact</Link></li>
+          <li><Link to={`/${userId}/aboutus`}>About Us</Link></li>
           <li><Link to={`/${userId}/dashboard`}>Dashboard</Link></li>
           {isLoggedIn ? (
             <>
