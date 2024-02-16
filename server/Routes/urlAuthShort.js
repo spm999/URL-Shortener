@@ -10,7 +10,7 @@ router.post('/:userId/url/short', authenticateToken, async (req, res) => {
     const { longURL } = req.body;
     const userId = parseInt(req.params.userId); // Parse userId as an integer
 
-    const shortURL = `http://localhost:5172/${shortid.generate()}`; // Generate a short ID
+    const shortURL = `http://localhost:5172/user/${userId}/url/${shortid.generate()}`; // Generate a short ID
     
     // Create a new ShortURL document
     const newShortURL = new ShortURL({
@@ -30,27 +30,27 @@ router.post('/:userId/url/short', authenticateToken, async (req, res) => {
 });
 
 // Endpoint to redirect to the original URL
-// Endpoint to redirect to the original URL
-// router.get('/:userId/url/:shortURL', async (req, res) => {
-//     try {
-//       const { shortURL, userId } = req.params; // Destructuring shortURL and userId from req.params
-    
-//       // Find the corresponding longURL in MongoDB based on userId and shortURL
-//     //   const shortURLDoc = await ShortURL.findOne({ userId, shortURL });
-//       const shortURLDoc = await shorturls.findOne({ userId, `http://localhost:5172/${shortURL}` });
-      
-//     //   const longURL = urlDatabase[`http://localhost:5172/${shortURL}`];
+router.get('/:userId/url/:shortURL', async (req, res) => {
+  try {
+      const { shortURL, userId } = req.params;
 
-//       if (shortURLDoc) {
-//         res.redirect(shortURLDoc.longURL);
-//       } else {
-//         res.status(404).json({ error: 'URL not found' });
-//       }
-//     } catch (error) {
-//       console.error('Error retrieving URL:', error.message);
-//       res.status(500).json({ message: 'Internal Server Error' });
-//     }
-//   });
+      // Assuming you have a model named ShortURL
+      
+      // Find the corresponding longURL in MongoDB based on userId and shortURL
+      const shortURLDoc = await ShortURL.findOne({ userId, shortURL: `http://localhost:5172/user/${userId}/url/${shortURL}` });
+      // console.log(shortURLDoc)
+
+      if (shortURLDoc) {
+          res.redirect(shortURLDoc.longURL);
+      } else {
+          res.status(404).json({ error: 'URL not found' });
+      }
+  } catch (error) {
+      console.error('Error retrieving URL:', error.message);
+      res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
   
   
 
