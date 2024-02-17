@@ -21,14 +21,14 @@ const Dashboard = () => {
           'Content-Type': 'application/json',
         },
       })
-      .then(response => {
-        setUsername(response.data.username);
-        // Once user data is fetched, fetch short URLs
-        fetchShortURLs(token);
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error.message);
-      });
+        .then(response => {
+          setUsername(response.data.username);
+          // Once user data is fetched, fetch short URLs
+          fetchShortURLs(token);
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error.message);
+        });
     } else {
       navigate('/login');
     }
@@ -41,14 +41,22 @@ const Dashboard = () => {
         'Content-Type': 'application/json',
       },
     })
-    .then(response => {
-      setShortURLs(response.data.shortURLs);
-      setLoading(false);
-    })
-    .catch(error => {
-      console.error('Error fetching short URLs:', error.message);
-    });
+      .then(response => {
+        setShortURLs(response.data.shortURLs);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching short URLs:', error.message);
+      });
   };
+
+  const handleAnalytics=()=>{
+
+  }
+
+  const handleDelete =()=>{
+    
+  }
 
   const logout = () => {
     localStorage.removeItem('authToken');
@@ -62,8 +70,8 @@ const Dashboard = () => {
       <nav>
         <ul>
           <li><Link to={`/${userId}`}>Home</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/aboutus">About Us</Link></li>
+          <li><Link to={`/${userId}/contact`}>Contact</Link></li>
+          <li><Link to={`/${userId}/aboutus`}>About Us</Link></li>
           <li><Link to={`/${userId}/dashboard`}>Dashboard</Link></li>
           {isLoggedIn ? (
             <>
@@ -81,9 +89,16 @@ const Dashboard = () => {
       ) : (
         <ul>
           {shortURLs.map(url => (
-            <li key={url._id}>{url.shortURL},{url.longURL}</li>
+            <li key={url._id}>
+              <a href={url.shortURL} target='_blank'>{url.shortURL}</a>, <a href={url.longURL} target='_blank'>{url.longURL}</a>
+
+              <button onClick={handleAnalytics}>Analytics</button>
+              <button onClick={handleDelete}>Delete</button>
+
+            </li>
           ))}
         </ul>
+
       )}
     </div>
   );

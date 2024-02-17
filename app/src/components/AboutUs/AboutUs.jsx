@@ -1,9 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const AboutUs = () => {
+  
+  const { userId } = useParams();
+  const navigate = useNavigate(); // Using useNavigate to get the navigation function
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setIsLoggedIn(true);
+
+      axios.get(`http://localhost:5172/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(response => {
+        setUsername(response.data.username);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error.message);
+      });
+    }
+  }, [userId]); // Include userId in dependency array
 
   // Assuming you have a logout function similar to what's used in the Dashboard
   const logout = () => {
@@ -12,17 +39,25 @@ const AboutUs = () => {
     setIsLoggedIn(false);
     setUsername('');
     // Redirect to home page or login page
-    // navigate('/');
+    navigate('/');
   };
 
   return (
     <div>
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/aboutus">About Us</Link></li>
-          <li><Link to="/dashboard">Dashboard</Link></li>
+
+          {isLoggedIn ? (<li><Link to={`/${userId}`}>Home</Link></li>
+          ) : (<li><Link to="/">Home</Link></li>
+          )}
+
+          {isLoggedIn ? (<li><Link to={`/${userId}/contact`}>Contact</Link></li>
+          ) : (<li><Link to="/contact">Contact</Link></li>
+          )}
+          {isLoggedIn ? (<li><Link to={`/${userId}/aboutus`}>About</Link></li>
+          ) : (<li><Link to="/aboutus">About</Link></li>
+          )}
+          {isLoggedIn && <li><Link to={`/${userId}/dashboard`}>Dashboard</Link></li>}
           {isLoggedIn ? (
             <>
               <li>Hello {username}</li>
@@ -36,16 +71,9 @@ const AboutUs = () => {
       <div>
         <h2>About Us</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget felis at purus finibus 
-          convallis. Vivamus vel nisi vitae libero consectetur varius. Integer vel arcu risus. 
-          Fusce interdum, tortor eu consectetur accumsan, purus ex blandit magna, at consequat mi 
-          justo nec nulla. Sed non lorem quis libero blandit mattis. Nam in libero sed orci 
-          fringilla scelerisque. Cras vestibulum lectus ac quam euismod, quis rutrum odio cursus. 
-          Morbi a neque vitae metus pharetra scelerisque. Sed aliquet justo vel orci lobortis, 
-          non egestas felis hendrerit. Nulla nec eros id sapien convallis suscipit in eu mauris. 
-          Donec varius ultricies ante, sit amet elementum quam efficitur at. Quisque in eros nec 
-          nisl fringilla fermentum nec quis justo. Cras ut volutpat leo, a elementum justo. 
-          Integer pretium risus vitae libero consequat, at auctor enim scelerisque. Ut nec 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget felis at purus finibus
+          convallis. Vivamus vel nisi vitae libero consectetur varius. Integer vel arcu risus.
+          Fusce interdum, tortor eu consectetur accumo consequat, at auctor enim scelerisque. Ut nec
           sapien a purus luctus lobortis.
         </p>
       </div>

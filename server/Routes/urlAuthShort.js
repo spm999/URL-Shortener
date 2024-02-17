@@ -52,6 +52,4 @@ router.get('/:userId/url/:shortURL', async (req, res) => {
 });
 
   
-  
-
 module.exports = router;
