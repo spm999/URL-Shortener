@@ -50,13 +50,27 @@ const Dashboard = () => {
       });
   };
 
-  const handleAnalytics=()=>{
+  const handleAnalytics = (urlId) => {
+    navigate(`/${userId}/${urlId}/analytics`);
+  };
+  
 
-  }
-
-  const handleDelete =()=>{
-    
-  }
+  const handleDelete = (urlId) => {
+    const token = localStorage.getItem('authToken');
+    axios.delete(`http://localhost:5172/shortURL/${urlId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        // Remove the deleted URL from the state
+        setShortURLs(shortURLs.filter(url => url._id !== urlId));
+      })
+      .catch(error => {
+        console.error('Error deleting URL:', error.message);
+      });
+  };
 
   const logout = () => {
     localStorage.removeItem('authToken');
@@ -91,14 +105,11 @@ const Dashboard = () => {
           {shortURLs.map(url => (
             <li key={url._id}>
               <a href={url.shortURL} target='_blank'>{url.shortURL}</a>, <a href={url.longURL} target='_blank'>{url.longURL}</a>
-
-              <button onClick={handleAnalytics}>Analytics</button>
-              <button onClick={handleDelete}>Delete</button>
-
+              <button onClick={() => handleAnalytics(url._id)}>Analytics</button>
+              <button onClick={() => handleDelete(url._id)}>Delete</button>
             </li>
           ))}
         </ul>
-
       )}
     </div>
   );

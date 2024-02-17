@@ -12,7 +12,7 @@ const Home2 = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
 
-  console.log(userId)
+  // console.log(userId)
   useEffect(() => {
     // Check if user is logged in
     const token = localStorage.getItem('authToken');
@@ -51,7 +51,7 @@ const Home2 = () => {
     if (token) {
       try {
         const response = await axios.post(
-          `http://localhost:5172/user/${userId}/url/short`,
+          `http://localhost:5172/${userId}/url/short`,
           { longURL },
           {
             headers: {

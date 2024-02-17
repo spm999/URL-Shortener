@@ -34,14 +34,17 @@ app.use('/user', userAuthRoutes);
 app.use('/user', userMe);
 
 const urlshortener=require('./Routes/urlShort.js')
-app.use('/url', urlshortener);
+app.use('/', urlshortener);
 
 
 const urlshort=require('./Routes/urlAuthShort.js')
-app.use('/user', urlshort);
+app.use('/', urlshort);
 
 const dashboard=require('./Routes/userdashboard.js')
 app.use('/user', dashboard)
+
+const analytics=require('./Routes/analytics.js')
+app.use('/user', analytics)
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port: ${PORT}`)

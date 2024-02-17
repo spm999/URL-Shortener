@@ -7,6 +7,7 @@ import Register from './components/Register/Register';
 import AboutUs from './components/AboutUs/AboutUs';
 import Contact from './components/Contact/Contact';
 import Home2 from './components/Home2/Home2';
+import Analytics from './components/Analytics/Analytics';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,6 +42,7 @@ const AuthenticatedRoutes = ({ isLoggedIn }) => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/:urlId/analytics" element={<Analytics />} />
         </>
       }
     </Routes>

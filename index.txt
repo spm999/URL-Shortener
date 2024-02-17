@@ -53,7 +53,7 @@ router.delete('/shortURL/:urlId', async (req, res) => {
 
 
 // GET endpoint to retrieve a specific shortened URL by its shortlink
-router.get('/url/:shortlink', async (req, res) => {
+router.get('/user/url/:shortlink', async (req, res) => {
   try {
     const { shortlink } = req.params;
 

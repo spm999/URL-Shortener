@@ -8,7 +8,7 @@ const Home = () => {
   const shortenURL = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5172/url/shorten',
+        'http://localhost:5172/shorten',
         { longURL }
       );
       setShortURL(response.data.shortURL);
