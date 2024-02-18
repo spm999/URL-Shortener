@@ -10,7 +10,7 @@ router.post('/:userId/url/short', authenticateToken, async (req, res) => {
     const { longURL } = req.body;
     const userId = parseInt(req.params.userId); // Parse userId as an integer
 
-    const shortURL = `http://localhost:5172/url/${shortid.generate()}`; // Generate a short ID
+    const shortURL = `https://url-shortener-tatk.onrender.com/url/${shortid.generate()}`; // Generate a short ID
     
     // Create a new ShortURL document
     const newShortURL = new ShortURL({
@@ -58,7 +58,7 @@ router.get('/url/:shortlink', async (req, res) => {
     const { shortlink } = req.params;
 
     // Find the corresponding longURL in MongoDB based on the shortURL
-    const shortURLDoc = await ShortURL.findOne({ shortURL: `http://localhost:5172/url/${shortlink}` });
+    const shortURLDoc = await ShortURL.findOne({ shortURL: `https://url-shortener-tatk.onrender.com/url/${shortlink}` });
 
     if (shortURLDoc) {
       // Increment visit count and store timestamp
