@@ -53,7 +53,7 @@ const Home2 = () => {
     if (token) {
       try {
         const response = await axios.post(
-          `http://localhost:5172/${userId}/url/short`,
+          `https://url-shortener-tatk.onrender.com/${userId}/url/short`,
           { longURL },
           {
             headers: {
