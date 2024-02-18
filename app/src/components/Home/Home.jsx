@@ -24,10 +24,11 @@ const Home = () => {
 
     <div className="home-container">
       <nav className="nav-container">
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/aboutus">About Us</a></li>
-        <li><a href="/login">Login</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+        <li> <Link to="/aboutus">About Us</Link></li>
+        <li> <Link to="/login">Login</Link></li>
+
 
       </nav>
       <h1>URL Shortener</h1>
