@@ -1,0 +1,215 @@
+/* Home.jsx */
+.home-container {
+    max-width: 85%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1184ff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.nav-container li {
+    display:inline-block; 
+}
+
+.nav-container li a{
+text-decoration: none;  
+color: #fff;  
+font-size: large;
+}
+
+h1{
+    text-align: center;
+    margin-top: 5%;
+}
+
+/* Input field styles */
+.input-field {
+    width: 98%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.shorting-button {
+    text-align: center;
+     margin-top: 30px;
+}
+
+/* Button styles */
+.shorten-button {
+    padding: 15px 25px;
+    background-color: #3597ff;
+    color: #fff;
+    width: 50%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.shorten-button:hover {
+    background-color: #0056b3;
+}
+
+/* Shortened URL paragraph styles */
+.shortened-url {
+    background-color: #ccc;
+    color: #000000;
+    margin: 30px auto; /* Center vertically and horizontally */
+    padding: 15px;
+    width: 50%;
+    border-radius: 5px;
+    display: flex; /* Make it a flex container */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Center text inside */
+}
+
+@media (max-width:680px){
+    .shortened-url {
+        background-color: #ccc;
+        color: #000000;
+        margin: 30px auto; /* Center vertically and horizontally */
+        padding: 15px;
+        width: 90%;
+        border-radius: 5px;
+        display: flex; /* Make it a flex container */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        text-align: center; /* Center text inside */
+    }
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////// */
+/* Contact.jsx */
+
+.contact-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .contact-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .contact-info {
+    margin-top: 10px;
+  }
+  
+  .contact-description {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .contact-details {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  .contact-email,
+  .contact-phone {
+    font-weight: bold;
+    color: #007bff;
+  }
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////// */
+/* Aboutus.jsx */
+
+.about-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .about-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .about-description {
+    font-size: 16px;
+    color: #666;
+  }
+
+  
+  /* ///////////////////////////////////////////////////////////////////////// */
+/* Login.jsx */
+
+.form-container{
+    display: flex;
+    justify-content: center;
+}
+
+
+.login-form {
+    margin-top: 20px;
+    background-color: #f4f2f2;
+    width: 40%;
+    padding: 10%;
+    justify-content: center;
+}
+  
+@media (max-width:680px){
+    .login-form {
+        margin-top: 20px;
+        background-color: #efefef;
+        width: 80%;
+        padding: 10%;
+        justify-content: center;
+    }
+}
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form-submit:hover {
+    background-color: #0056b3;
+  }
+  
+  .signup-text {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .signup-link {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .signup-link:hover {
+    text-decoration: underline;
+  }
+  
