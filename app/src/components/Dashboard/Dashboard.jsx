@@ -80,36 +80,56 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
-      <nav>
-        <ul>
+    <div className="home-container">
+      <nav className="nav-container">
           <li><Link to={`/${userId}`}>Home</Link></li>
           <li><Link to={`/${userId}/contact`}>Contact</Link></li>
           <li><Link to={`/${userId}/aboutus`}>About Us</Link></li>
           <li><Link to={`/${userId}/dashboard`}>Dashboard</Link></li>
           {isLoggedIn ? (
             <>
-              <li>Hello {username}</li>
-              <li><button onClick={logout}>Logout</button></li>
+              <li className='Hellouser'>Hello {username}</li>
+              <li><button className='logout' onClick={logout}>Logout</button></li>
             </>
           ) : (
             <li><Link to="/login">Login</Link></li>
           )}
-        </ul>
       </nav>
       <h1>Dashboard</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
-          {shortURLs.map(url => (
-            <li key={url._id}>
-              <a href={url.shortURL} target='_blank'>{url.shortURL}</a>, <a href={url.longURL} target='_blank'>{url.longURL}</a>
-              <button onClick={() => handleAnalytics(url._id)}>Analytics</button>
-              <button onClick={() => handleDelete(url._id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
+        // <ul>
+        //   {shortURLs.map(url => (
+        //     <li key={url._id}>
+        //       <a href={url.shortURL} target='_blank'>{url.shortURL}</a>, <a href={url.longURL} target='_blank'>{url.longURL}</a>
+        //       <button onClick={() => handleAnalytics(url._id)}>Analytics</button>
+        //       <button onClick={() => handleDelete(url._id)}>Delete</button>
+        //     </li>
+        //   ))}
+        // </ul>
+        <table className="url-table">
+  <thead>
+    <tr>
+      <th>Short URL</th>
+      <th>Long URL</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {shortURLs.map(url => (
+      <tr key={url._id}>
+        <td><a href={url.shortURL} target='_blank'>{url.shortURL}</a></td>
+        <td><a href={url.longURL} target='_blank'>{url.longURL}</a></td>
+        <td>
+          <button onClick={() => handleAnalytics(url._id)}>Analytics</button>
+          <button id='delete' onClick={() => handleDelete(url._id)}>Delete</button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
       )}
     </div>
   );

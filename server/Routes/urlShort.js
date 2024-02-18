@@ -10,6 +10,7 @@ const urlDatabase = {};
 router.post('/shorten', async (req, res) => {
   try {
     const { longURL } = req.body;
+    
     const shortURL = `http://localhost:5172/${shortid.generate()}`; // Generate a short ID
     urlDatabase[shortURL] = longURL; // Store the long URL corresponding to the short URL
     

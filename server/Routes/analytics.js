@@ -3,7 +3,7 @@ const router = express.Router();
 const ShortURL = require('../Models/ShortURL');
 
 // GET endpoint to retrieve analytics data for a specific shortened URL
-router.get('/:urlId/analytics', async (req, res) => {
+router.get('/:userId/:urlId/analytics', async (req, res) => {
   try {
     const { urlId } = req.params;
 

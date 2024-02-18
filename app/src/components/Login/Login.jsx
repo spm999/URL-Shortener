@@ -22,7 +22,7 @@ const Login = () => {
       });
       // console.log(res.data); // Assuming you want to do something with the response, like redirecting the user
       // Save token to localStorage
-      const userId=res.data.UserId;
+      const userId = res.data.UserId;
       // console.log(userId)
       localStorage.setItem('authToken', res.data.authtoken);
       // Redirect to Dashboard or wherever you want after successful login
@@ -33,33 +33,46 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="home-container">
+      <nav className="nav-container">
+        <li><a href="/">Home</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/aboutus">About Us</a></li>
+        <li><a href="/login">Login</a></li>
+      </nav>
       <h1>Login</h1>
-      <form onSubmit={onSubmit}>
-        <div>
+      <div className='form-container'>
+
+
+      <form className="login-form" onSubmit={onSubmit}>
+        <div className="form-group">
           <input
             type="email"
             placeholder="Email"
             name="email"
             value={email}
             onChange={onChange}
+            className="form-input"
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <input
             type="password"
             placeholder="Password"
             name="password"
             value={password}
             onChange={onChange}
+            className="form-input"
             minLength="6"
             required
           />
         </div>
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login" className="form-submit" />
       </form>
-      <p>Don't have an account? <Link to="/signup">Sign Up</Link></p> {/* Link to signup page */}
+      </div>
+      <p className="signup-text">Don't have an account? <Link to="/register" className="signup-link">Sign Up</Link></p>
+
     </div>
   );
 };

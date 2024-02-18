@@ -1,79 +1,84 @@
-// import React, { useState, useEffect } from 'react';
-// import { useParams, useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-
-// const Analytics = () => {
-//   const { urlId } = useParams();
-//   const [analyticsData, setAnalyticsData] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const fetchAnalyticsData = async () => {
-//       try {
-//         const response = await axios.get(`http://localhost:5172/user/${urlId}/analytics`);
-//         setAnalyticsData(response.data);
-//         setLoading(false);
-//       } catch (error) {
-//         console.error('Error fetching analytics data:', error.message);
-//         navigate('/404'); // Redirect to 404 page if the URL is not found or other errors occur
-//       }
-//     };
-
-//     fetchAnalyticsData();
-//   }, [urlId, navigate]);
-
-//   return (
-//     <div>
-//       <h1>Analytics</h1>
-//       {loading ? (
-//         <p>Loading...</p>
-//       ) : (
-//         <div>
-//           <p>Visit Count: {analyticsData.visitCount}</p>
-//           <h3>Visits:</h3>
-//           <ul>
-//             {analyticsData.visits.map((visit, index) => (
-//               <li key={index}>{visit.timestamp}</li>
-//             ))}
-//           </ul>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Analytics;
-
-
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+
 
 const Analytics = () => {
-  const { urlId } = useParams();
+  const { urlId, userId } = useParams();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
   const [analyticsData, setAnalyticsData] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchAnalyticsData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5172/user/${urlId}/analytics`);
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setIsLoggedIn(true);
+      axios.get(`http://localhost:5172/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          setUsername(response.data.username);
+          // Fetch analytics data after user data is fetched
+          fetchAnalyticsData(token);
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error.message);
+          navigate('/404'); // Redirect to 404 page if user data is not found or other errors occur
+        });
+    } else {
+      navigate('/login');
+    }
+  }, [userId, navigate]);
+
+  const fetchAnalyticsData = (token) => {
+    axios.get(`http://localhost:5172/user/${userId}/${urlId}/analytics`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
         setAnalyticsData(response.data);
         setLoading(false);
-      } catch (error) {
+      })
+      .catch(error => {
         console.error('Error fetching analytics data:', error.message);
-        navigate('/404'); // Redirect to 404 page if the URL is not found or other errors occur
-      }
-    };
+        navigate('/404'); // Redirect to 404 page if analytics data is not found or other errors occur
+      });
+  };
 
-    fetchAnalyticsData();
-  }, [urlId, navigate]);
+  const logout = () => {
+    localStorage.removeItem('authToken');
+    setIsLoggedIn(false);
+    setUsername('');
+    navigate('/');
+  };
+
+ 
+
+
 
   return (
-    <div>
+    <div className="home-container">
+      <nav className="nav-container">
+        <li><Link to={`/${userId}`}>Home</Link></li>
+        <li><Link to={`/${userId}/contact`}>Contact</Link></li>
+        <li><Link to={`/${userId}/aboutus`}>About Us</Link></li>
+        <li><Link to={`/${userId}/dashboard`}>Dashboard</Link></li>
+        {isLoggedIn ? (
+          <>
+            <li className='Hello-user'>Hello {username}</li>
+            <li><button className='logout' onClick={logout}>Logout</button></li>
+          </>
+        ) : (
+          <li><Link to="/login">Login</Link></li>
+        )}
+      </nav>
       <h1>Analytics</h1>
       {loading ? (
         <p>Loading...</p>
@@ -86,15 +91,6 @@ const Analytics = () => {
               <li key={index}>{visit.timestamp}</li>
             ))}
           </ul>
-          <h3>Visit Trends</h3>
-          <BarChart width={600} height={300} data={analyticsData.visits}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="timestamp" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="visitCount" fill="#8884d8" />
-          </BarChart>
         </div>
       )}
     </div>
