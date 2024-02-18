@@ -16,7 +16,7 @@ const Login = () => {
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5172/user/login', {
+      const res = await axios.post('https://url-shortener-tatk.onrender.com/user/login', {
         email,
         password
       });
