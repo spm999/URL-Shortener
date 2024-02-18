@@ -28,7 +28,7 @@ const Login = () => {
       navigate(`/${userId}`);
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        setError('Email is not registered');
+        setError(' Check Email and password');
       } else {
         setError('An error occurred. Please try again later.');
       }
