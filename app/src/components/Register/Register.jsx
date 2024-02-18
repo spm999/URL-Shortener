@@ -17,7 +17,7 @@ const Register = () => {
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5172/user/register', {
+      const res = await axios.post('https://url-shortener-tatk.onrender.com/user/register', {
         username,
         email,
         password
