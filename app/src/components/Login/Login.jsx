@@ -28,9 +28,9 @@ const Login = () => {
       navigate(`/${userId}`);
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        setError(' Check Email and password');
+        setError('Your Email is not registered.');
       } else {
-        setError('An error occurred. Please try again later.');
+        setError('Please check your credential');
       }
     }
   };
@@ -73,8 +73,9 @@ const Login = () => {
           />
         </div>
         <input type="submit" value="Login" className="form-submit" />
-      </form>
         {error && <p className="error-message">{error}</p>}
+
+      </form>
 
       </div>
       <p className="signup-text">Don't have an account? <Link to="/register" className="signup-link">Sign Up</Link></p>

@@ -31,14 +31,22 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="home-container">
+      <nav className="nav-container">
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+        <li> <Link to="/aboutus">About Us</Link></li>
+        <li> <Link to="/login">Login</Link></li>
+      </nav>
       <h1>Register</h1>
-      <form onSubmit={onSubmit}>
+      <div className='form-container'>
+      <form className="login-form" onSubmit={onSubmit}>
         <div>
           <input
             type="text"
             placeholder="Username"
             name="username"
+            className="form-input"
             value={username}
             onChange={onChange}
             required
@@ -49,6 +57,7 @@ const Register = () => {
             type="email"
             placeholder="Email"
             name="email"
+            className="form-input"
             value={email}
             onChange={onChange}
             required
@@ -59,15 +68,17 @@ const Register = () => {
             type="password"
             placeholder="Password"
             name="password"
+            className="form-input"
             value={password}
             onChange={onChange}
             minLength="6"
             required
           />
         </div>
-        <input type="submit" value="Register" />
+        <input type="submit" value="Register" className="form-submit" />
       </form>
-      <p>Already have an account? <Link to="/login">Login</Link></p>
+      </div>
+      <p className="signup-text"  >Already have an account? <Link to="/login">Login</Link></p>
     </div>
   );
 };
