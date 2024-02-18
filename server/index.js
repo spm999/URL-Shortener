@@ -6,7 +6,7 @@ const router=require('./router.js');
 
 const app = express();
 
-// app.use(router);
+app.use(router);
 app.use(cors());
 
 app.use((req, res, next) => {
