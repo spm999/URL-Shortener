@@ -7,6 +7,7 @@ const Login = () => {
     email: '',
     password: ''
   });
+  const [error, setError] =useState('')
 
   const { email, password } = formData;
   const navigate = useNavigate(); // useNavigate hook to redirect
@@ -29,6 +30,8 @@ const Login = () => {
       navigate(`/${userId}`);
     } catch (error) {
       console.error('Login Error:', error.message);
+            setError(error)
+
     }
   };
 
@@ -70,6 +73,8 @@ const Login = () => {
         </div>
         <input type="submit" value="Login" className="form-submit" />
       </form>
+              {error}
+
       </div>
       <p className="signup-text">Don't have an account? <Link to="/register" className="signup-link">Sign Up</Link></p>
 
