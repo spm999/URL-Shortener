@@ -15,7 +15,7 @@ const Contact = () => {
     if (token) {
       setIsLoggedIn(true);
 
-      axios.get(`http://localhost:5172/user/${userId}`, {
+      axios.get(`https://url-shortener-tatk.onrender.com/user/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
