@@ -11,7 +11,7 @@ const Home = () => {
     e.preventDefault()
     try {
       const response = await axios.post(
-        'http://localhost:5172/shorten',
+        'https://url-shortener-tatk.onrender.com/shorten',
         { longURL }
       );
       setShortURL(response.data.shortURL);
