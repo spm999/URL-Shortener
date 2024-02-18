@@ -15,7 +15,7 @@ const Dashboard = () => {
     const token = localStorage.getItem('authToken');
     if (token) {
       setIsLoggedIn(true);
-      axios.get(`http://localhost:5172/user/${userId}`, {
+      axios.get(`https://url-shortener-tatk.onrender.com/user/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const Dashboard = () => {
   }, [userId, navigate]);
 
   const fetchShortURLs = (token) => {
-    axios.get(`http://localhost:5172/user/${userId}/dashboard`, {
+    axios.get(`https://url-shortener-tatk.onrender.com/user/${userId}/dashboard`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const Dashboard = () => {
 
   const handleDelete = (urlId) => {
     const token = localStorage.getItem('authToken');
-    axios.delete(`http://localhost:5172/shortURL/${urlId}`, {
+    axios.delete(`https://url-shortener-tatk.onrender.com/shortURL/${urlId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
