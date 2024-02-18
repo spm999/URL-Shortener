@@ -11,7 +11,7 @@ router.post('/shorten', async (req, res) => {
   try {
     const { longURL } = req.body;
     
-    const shortURL = `http://localhost:5172/${shortid.generate()}`; // Generate a short ID
+    const shortURL = `https://url-shortener-tatk.onrender.com/${shortid.generate()}`; // Generate a short ID
     urlDatabase[shortURL] = longURL; // Store the long URL corresponding to the short URL
     
     res.json({ shortURL });
@@ -24,7 +24,7 @@ router.post('/shorten', async (req, res) => {
 // Endpoint to redirect to the original URL
 router.get('/:shortURL', (req, res) => {
   const { shortURL } = req.params;
-  const longURL = urlDatabase[`http://localhost:5172/${shortURL}`];
+  const longURL = urlDatabase[`https://url-shortener-tatk.onrender.com/${shortURL}`];
   if (longURL) {
     res.redirect(longURL);
   } else {
