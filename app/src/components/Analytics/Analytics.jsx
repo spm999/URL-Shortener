@@ -15,7 +15,7 @@ const Analytics = () => {
     const token = localStorage.getItem('authToken');
     if (token) {
       setIsLoggedIn(true);
-      axios.get(`http://localhost:5172/user/${userId}`, {
+      axios.get(`https://url-shortener-tatk.onrender.com/user/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const Analytics = () => {
   }, [userId, navigate]);
 
   const fetchAnalyticsData = (token) => {
-    axios.get(`http://localhost:5172/user/${userId}/${urlId}/analytics`, {
+    axios.get(`https://url-shortener-tatk.onrender.com/user/${userId}/${urlId}/analytics`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
