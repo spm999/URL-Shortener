@@ -1,22 +1,22 @@
-# URL Shortener
+# 🌐URL Shortener
 
 A URL Shortener application built using the MERN stack (MongoDB, Express, React.js, Node.js), SHORTid, and JWT. This application allows users to shorten long URLs, manage their web links, and view analytics for their shortened URLs.
 
-## Features
+## ✨ Features
 1. Shorten URLs: Users can shorten long URLs easily.
 2. User Authentication: Users can sign up, log in, and manage their account.
 3. RL Management: Users can view, edit, and delete their shortened URLs.
 4. Analytics: Users can see the analytics for their shortened URLs, such as the number of clicks.
 5. Data Storage: Long and short URLs are stored in MongoDB.
    
-## Technologies Used
+## 🛠️ Technologies Used
 1. Frontend: React.js
 2. Backend: Node.js, Express.js
 3. Database: MongoDB
 4. URL Shortening: SHORTid
 5. Authentication: JSON Web Tokens (JWT)
 
-## Installation
+## 📦 Installation
 
 ### Prerequisites
 1. Node.js
@@ -59,7 +59,7 @@ npm run dev
 ```
 The application will now be running on http://localhost:5173.
 
-## Usage
+## 🚀 Usage
 1. ***Sign Up***: Create a new account by signing up.
 2. ***Log In***: Log in to your account.
 3. ***Shorten URL***: Enter a long URL to get a shortened version.
@@ -67,11 +67,11 @@ The application will now be running on http://localhost:5173.
 5. ***View Analytics***: See the analytics for your shortened URLs.
 
 
-## License
+## 📝 License
 This project is licensed under the MIT License.
 
-## Contact
-For any questions or suggestions, please open an issue or contact me at [msurya9701@gmail.com](Email)
+## 📧 Contact
+For any questions or suggestions, please open an issue or contact me at [Email](msurya9701@gmail.com)
 
 
 ***Backend hosted url***->https://url-shortener-tatk.onrender.com
